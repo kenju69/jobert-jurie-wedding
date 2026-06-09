@@ -1,4 +1,3 @@
-/* STREAMING_CHUNK: Configuring luxury color tokens and typography imports... */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
 
 :root {
@@ -27,15 +26,12 @@ html {
 scroll-behavior: smooth;
 }
 
-/* CORRECTED RULE: Added the universal selector '*' here */
-
 *{
 box-sizing: border-box;
 margin: 0;
 padding: 0;
 }
 
-/* STREAMING_CHUNK: Setting up elegant global background styles and layouts */
 body {
 background: radial-gradient(circle at center, #07382a 0%, #031c15 100%);
 color: #FAF9F6;
@@ -74,7 +70,7 @@ filter: grayscale(100%) contrast(150%);
 }
 
 section {
-padding: 120px 24px;
+padding: clamp(60px, 10vw, 120px) clamp(16px, 4vw, 24px);
 text-align: center;
 position: relative;
 }
@@ -84,18 +80,20 @@ max-width: 960px;
 margin: 0 auto;
 position: relative;
 z-index: 2;
+width: 100%;
 }
 
 /* Elegant card-stock framing accent for editorial style pages */
 .card-frame {
 border: 1px solid rgba(250, 249, 246, 0.12);
-padding: 60px 40px;
+padding: clamp(30px, 6vw, 60px) clamp(15px, 5vw, 40px);
 background-color: rgba(9, 45, 36, 0.45);
 backdrop-filter: blur(12px);
 -webkit-backdrop-filter: blur(12px);
 position: relative;
 box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 border-radius: 20px;
+width: 100%;
 }
 
 .card-frame::before {
@@ -108,13 +106,12 @@ opacity: 0.35;
 border-radius: 16px;
 }
 
-/* STREAMING_CHUNK: Defining luxury serif typography and spacing rules /
-/ Typography & Minimalist Dividers */
+/* Typography & Minimalist Dividers */
 h2 {
 font-family: var(--font-heading);
-font-size: 2.8rem;
+font-size: clamp(2rem, 5vw, 2.8rem);
 font-weight: 300;
-letter-spacing: 4px;
+letter-spacing: clamp(2px, 0.5vw, 4px);
 margin-bottom: 10px;
 text-transform: uppercase;
 color: #FFFFFF;
@@ -122,11 +119,11 @@ text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 .section-subtitle {
-font-size: 0.8rem;
+font-size: clamp(0.7rem, 2vw, 0.8rem);
 color: var(--accent-gold);
-letter-spacing: 4px;
+letter-spacing: clamp(2px, 0.4vw, 4px);
 text-transform: uppercase;
-margin-bottom: 30px;
+margin-bottom: clamp(20px, 4vw, 30px);
 font-weight: 400;
 }
 
@@ -135,14 +132,14 @@ display: flex;
 align-items: center;
 justify-content: center;
 gap: 15px;
-margin: 30px 0 50px 0;
+margin: 30px 0;
 color: var(--accent-gold);
 font-size: 0.9rem;
 }
 
 .divider::before, .divider::after {
 content: '';
-width: 80px;
+width: clamp(40px, 10vw, 80px);
 height: 1px;
 background: linear-gradient(to right, transparent, var(--accent-gold), transparent);
 }
@@ -152,9 +149,9 @@ background: linear-gradient(to right, transparent, var(--accent-gold), transpare
 background-color: var(--accent-emerald);
 color: #FFFFFF;
 border: 1px solid var(--accent-gold);
-padding: 14px 35px;
+padding: clamp(10px, 2vw, 14px) clamp(24px, 4vw, 35px);
 font-family: var(--font-body);
-font-size: 0.85rem;
+font-size: clamp(0.75rem, 1.5vw, 0.85rem);
 text-transform: uppercase;
 letter-spacing: 2px;
 cursor: pointer;
@@ -173,16 +170,21 @@ transform: translateY(-2px);
 box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
 }
 
-/* STREAMING_CHUNK: Styling the initial full-screen hero section /
-/ 1. HERO / WELCOME SECTION */
 .hero-section {
 position: relative;
 height: 100vh;
+height: 100dvh; /* Dynamic viewport height supporting modern mobile browsers */
 display: flex;
 align-items: center;
 justify-content: center;
 background: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop') center center / cover no-repeat;
+background-attachment: scroll; /* Scroll is safer and smoother on mobile browsers than fixed */
+}
+
+@media (min-width: 1024px) {
+.hero-section {
 background-attachment: fixed;
+}
 }
 
 .hero-bg-overlay {
@@ -196,26 +198,27 @@ z-index: 1;
 position: relative;
 z-index: 2;
 color: #FFFFFF;
-padding: 30px;
+padding: clamp(15px, 4vw, 30px);
 text-align: center;
+width: 100%;
 max-width: 800px;
 }
 
 .hero-sub {
-font-size: 0.85rem;
-letter-spacing: 6px;
+font-size: clamp(0.7rem, 2vw, 0.85rem);
+letter-spacing: clamp(4px, 1vw, 6px);
 text-transform: uppercase;
-margin-bottom: 25px;
+margin-bottom: clamp(15px, 4vw, 25px);
 font-weight: 300;
 text-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
 
 .hero-title {
 font-family: var(--font-heading);
-font-size: 4.5rem;
+font-size: clamp(2.4rem, 8vw, 4.5rem);
 margin-bottom: 20px;
 font-weight: 300;
-line-height: 1.2;
+line-height: 1.15;
 text-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
@@ -223,35 +226,37 @@ text-shadow: 0 4px 8px rgba(0,0,0,0.15);
 font-family: var(--font-heading);
 font-style: italic;
 display: block;
-font-size: 3rem;
-margin-top: 10px;
+font-size: clamp(1.8rem, 6vw, 3rem);
+margin-top: 5px;
 color: #FAF9F6;
 }
 
 .hero-date {
-font-size: 1.4rem;
-letter-spacing: 5px;
-margin-bottom: 25px;
+font-size: clamp(1.1rem, 3vw, 1.4rem);
+letter-spacing: clamp(3px, 0.8vw, 5px);
+margin-bottom: clamp(20px, 4vw, 25px);
 font-weight: 300;
 text-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
 
 .hero-hashtag {
 font-family: var(--font-heading);
-font-size: 1.6rem;
+font-size: clamp(1.1rem, 3vw, 1.6rem);
 color: rgba(250, 249, 246, 0.95);
-margin-bottom: 40px;
+margin-bottom: clamp(30px, 5vw, 40px);
 letter-spacing: 1px;
 font-style: italic;
+word-wrap: break-word; /* Ensure hashtag does not overflow narrow mobile devices */
+padding: 0 10px;
 }
 
 .btn-open-invite {
 background-color: transparent;
 color: #FFFFFF;
 border: 1px solid var(--accent-gold);
-padding: 14px 40px;
+padding: clamp(12px, 2vw, 14px) clamp(25px, 5vw, 40px);
 font-family: var(--font-body);
-font-size: 0.85rem;
+font-size: clamp(0.75rem, 2vw, 0.85rem);
 text-transform: uppercase;
 letter-spacing: 3px;
 cursor: pointer;
@@ -280,28 +285,28 @@ left: 0;
 border-color: #FFFFFF;
 }
 
-/* STREAMING_CHUNK: Styling details block elements and translucent countdown tiles /
-/ COUNTDOWN TIMER CONTAINER */
+/* COUNTDOWN TIMER CONTAINER */
 .countdown-container {
 display: flex;
 justify-content: center;
-gap: 25px;
-margin-top: 40px;
+flex-wrap: wrap;
+gap: clamp(10px, 3vw, 25px);
+margin-top: 30px;
 }
 
 .countdown-item {
 background-color: rgba(250, 249, 246, 0.05);
 backdrop-filter: blur(8px);
-padding: 20px 25px;
+padding: clamp(10px, 2vw, 20px) clamp(12px, 3vw, 25px);
 border: 1px solid rgba(197, 160, 89, 0.25);
-min-width: 90px;
+min-width: clamp(65px, 15vw, 90px);
 box-shadow: 0 6px 20px rgba(0,0,0,0.1);
 border-radius: 12px;
 }
 
 .countdown-val {
 font-family: var(--font-heading);
-font-size: 2.2rem;
+font-size: clamp(1.5rem, 4vw, 2.2rem);
 color: var(--accent-gold);
 display: block;
 line-height: 1;
@@ -309,7 +314,7 @@ font-weight: 500;
 }
 
 .countdown-lbl {
-font-size: 0.7rem;
+font-size: clamp(0.6rem, 1.5vw, 0.7rem);
 color: #FAF9F6;
 text-transform: uppercase;
 letter-spacing: 2px;
@@ -324,24 +329,23 @@ background-color: transparent;
 }
 
 .invitation-intro p {
-font-size: 1.2rem;
+font-size: clamp(1rem, 2.5vw, 1.2rem);
 max-width: 650px;
 margin: 0 auto;
 color: #FAF9F6;
 font-family: var(--font-body);
 font-weight: 300;
-line-height: 2;
+line-height: 1.8;
 opacity: 0.95;
 }
 
-/* STREAMING_CHUNK: Designing elite ceremony details cards mirroring image_79f923.png style /
-/ 3. DETAILS / EVENT CARDS */
+/* 3. DETAILS / EVENT CARDS - ALWAYS 2 COLUMNS (STAY SIDE-BY-SIDE) */
 .details-section {
 background-color: transparent;
 }
 
 .event-meta-label {
-font-size: 0.8rem;
+font-size: clamp(0.7rem, 1.5vw, 0.8rem);
 letter-spacing: 3px;
 text-transform: uppercase;
 color: var(--accent-gold);
@@ -351,13 +355,14 @@ font-weight: 500;
 .detail-heart-indicator {
 color: var(--accent-gold);
 font-size: 1.2rem;
-margin-bottom: 40px;
+margin-bottom: clamp(20px, 4vw, 40px);
 }
 
 .details-grid {
 display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 40px;
+/* Force 2 columns side-by-side on all screens including mobile */
+grid-template-columns: 1fr 1fr !important;
+gap: clamp(10px, 3vw, 40px);
 margin-top: 20px;
 }
 
@@ -378,7 +383,7 @@ overflow: hidden;
 .event-card-banner {
 position: relative;
 width: 100%;
-height: 180px;
+height: clamp(80px, 15vw, 180px);
 overflow: hidden;
 }
 
@@ -397,9 +402,9 @@ background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(9, 45, 36, 0.95));
 
 .banner-overlay-text {
 position: absolute;
-bottom: 15px;
-left: 20px;
-right: 20px;
+bottom: clamp(8px, 1.5vw, 15px);
+left: clamp(10px, 2vw, 20px);
+right: clamp(10px, 2vw, 20px);
 z-index: 2;
 text-align: left;
 }
@@ -407,7 +412,7 @@ text-align: left;
 .banner-overlay-text .badge {
 background-color: var(--accent-gold);
 color: #142921;
-font-size: 0.65rem;
+font-size: clamp(0.55rem, 1.2vw, 0.65rem);
 text-transform: uppercase;
 letter-spacing: 1.5px;
 padding: 3px 10px;
@@ -417,53 +422,56 @@ font-weight: 600;
 
 .venue-inline-title {
 font-family: var(--font-heading);
-font-size: 1.4rem;
+font-size: clamp(0.9rem, 2.2vw, 1.4rem);
 color: #FFFFFF;
 margin-top: 5px;
+line-height: 1.2;
 }
 
 .event-card-content {
-padding: 30px;
+padding: clamp(12px, 3vw, 30px);
 text-align: center;
 }
 
 .event-time {
 font-family: var(--font-heading);
-font-size: 1.3rem;
+font-size: clamp(0.9rem, 2.2vw, 1.3rem);
 font-weight: 500;
 letter-spacing: 1px;
-margin-bottom: 12px;
+margin-bottom: clamp(6px, 1.5vw, 12px);
 color: var(--accent-gold);
 }
 
 .event-address {
-font-size: 0.85rem;
+font-size: clamp(0.7rem, 1.5vw, 0.85rem);
 color: #FAF9F6;
 opacity: 0.8;
-margin-bottom: 25px;
+margin-bottom: clamp(15px, 2.5vw, 25px);
 }
 
 /* Premium micro QR system integration */
 .mini-qr-section {
 background: rgba(250, 249, 246, 0.05);
 border: 1px solid rgba(197, 160, 89, 0.2);
-padding: 15px;
+padding: 8px clamp(8px, 1.5vw, 15px);
 border-radius: 14px;
 display: inline-flex;
 align-items: center;
-gap: 15px;
-margin-bottom: 10px;
+gap: clamp(8px, 1.5vw, 15px);
+margin-bottom: 5px;
+max-width: 100%;
 }
 
 .qr-box {
-width: 44px;
-height: 44px;
+width: clamp(32px, 4vw, 44px);
+height: clamp(32px, 4vw, 44px);
 background-color: #FFFFFF;
 border-radius: 6px;
 display: flex;
 align-items: center;
 justify-content: center;
 padding: 4px;
+flex-shrink: 0;
 }
 
 .qr-svg {
@@ -473,69 +481,103 @@ color: #031c15;
 }
 
 .qr-label {
-font-size: 0.75rem;
+font-size: clamp(0.6rem, 1.2vw, 0.75rem);
 text-transform: uppercase;
 letter-spacing: 1px;
 color: var(--accent-gold);
 text-align: left;
+line-height: 1.2;
 }
 
 .event-card-action {
-padding: 0 30px 30px 30px;
+padding: 0 clamp(12px, 3vw, 30px) clamp(12px, 3vw, 30px) clamp(12px, 3vw, 30px);
 }
 
-/* STREAMING_CHUNK: Styling entourage categories, principal sponsors, and grids /
-/ 4. ENTOURAGE SECTION */
+/* 4. ENTOURAGE SECTION - ALWAYS 2 COLUMNS (STAY SIDE-BY-SIDE) */
 .entourage-section {
 background-color: transparent;
 }
 
 .entourage-container {
 display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 40px;
+/* Forces columns to stay side-by-side even on small mobile screens, matching desktop */
+grid-template-columns: 1fr 1fr !important;
+gap: clamp(10px, 3vw, 40px);
 max-width: 850px;
 margin: 0 auto;
 }
 
 .entourage-group {
-padding: 20px;
+padding: clamp(5px, 1.5vw, 15px) clamp(2px, 1vw, 20px);
 }
 
+/* Keep full-width grid spanning 2 columns even on small mobile screens */
 .entourage-group.full-width {
-grid-column: span 2;
+grid-column: span 2 !important;
 }
 
 .entourage-group h3 {
 font-family: var(--font-heading);
-font-size: 1.8rem;
+font-size: clamp(1rem, 2.5vw, 1.8rem);
 color: var(--accent-gold);
 font-weight: 400;
 border-bottom: 1px solid rgba(197, 160, 89, 0.3);
-padding-bottom: 8px;
-margin-bottom: 20px;
-letter-spacing: 2px;
+padding-bottom: clamp(4px, 1vw, 8px);
+margin-bottom: clamp(10px, 2vw, 20px);
+letter-spacing: clamp(1px, 0.2vw, 2px);
 text-transform: uppercase;
+line-height: 1.3;
 }
 
 .entourage-group .name {
-font-size: 1.05rem;
-margin: 8px 0;
+font-size: clamp(0.75rem, 1.8vw, 1.05rem);
+margin: clamp(4px, 1vw, 8px) 0;
 font-weight: 400;
 color: #FFFFFF;
+line-height: 1.4;
 }
 
 .entourage-group .role-desc {
-font-size: 0.8rem;
+font-size: clamp(0.6rem, 1.5vw, 0.8rem);
 color: var(--accent-gold);
 font-style: italic;
 opacity: 0.8;
 }
 
+/* Symmetrical Parents Sub-Layout styles */
+.parents-grid {
+display: grid;
+grid-template-columns: 1fr 1fr !important;
+gap: clamp(10px, 3vw, 40px);
+margin-top: 10px;
+}
+
+.parents-column {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.parents-column .role-title {
+font-family: var(--font-heading);
+font-size: clamp(0.9rem, 2.2vw, 1.3rem);
+font-weight: 400;
+border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+padding-bottom: 4px;
+margin-bottom: 12px;
+width: 100%;
+max-width: 250px;
+text-align: center;
+color: var(--accent-gold);
+text-transform: uppercase;
+}
+
+/* Side-by-side Ninongs vs Ninangs columns */
 .sponsors-grid {
 display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 20px;
+/* Keep 2 columns side-by-side */
+grid-template-columns: 1fr 1fr !important;
+gap: clamp(10px, 2vw, 20px);
 }
 
 .sponsors-column {
@@ -543,33 +585,34 @@ display: flex;
 flex-direction: column;
 }
 
+/* Side-by-side 3 Columns (Candle, Veil, Cord) */
 .secondary-grid {
 display: grid;
-grid-template-columns: 1fr 1fr 1fr;
-gap: 20px;
+/* Force 3 columns side-by-side */
+grid-template-columns: 1fr 1fr 1fr !important;
+gap: clamp(5px, 1.5vw, 20px);
 text-align: center;
 }
 
 .role-title {
 font-weight: 500;
-font-size: 0.8rem;
+font-size: clamp(0.6rem, 1.5vw, 0.8rem);
 text-transform: uppercase;
-letter-spacing: 2px;
+letter-spacing: clamp(1px, 0.2vw, 2px);
 color: var(--accent-gold);
 margin-bottom: 5px;
 }
 
-/* STREAMING_CHUNK: Developing elegant image showcase and video film blocks /
-/ 5. GALLERY SECTION */
+/* 5. GALLERY SECTION */
 .gallery-section {
 background-color: transparent;
 }
 
 .gallery-grid {
 display: grid;
-grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-gap: 20px;
-margin-bottom: 60px;
+grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+gap: clamp(10px, 3vw, 20px);
+margin-bottom: clamp(30px, 6vw, 60px);
 }
 
 .gallery-item {
@@ -606,12 +649,13 @@ transform: scale(1.08);
 background-color: rgba(9, 45, 36, 0.45);
 backdrop-filter: blur(12px);
 -webkit-backdrop-filter: blur(12px);
-padding: 50px;
+padding: clamp(20px, 5vw, 50px) clamp(15px, 4vw, 40px);
 border: 1px solid rgba(250, 249, 246, 0.12);
 margin-top: 30px;
 position: relative;
 box-shadow: 0 15px 40px rgba(0,0,0,0.3);
 border-radius: 24px;
+width: 100%;
 }
 
 .video-container-card::after {
@@ -625,7 +669,7 @@ border-radius: 20px;
 
 .video-container-card h3 {
 font-family: var(--font-heading);
-font-size: 2rem;
+font-size: clamp(1.4rem, 4vw, 2rem);
 margin-bottom: 25px;
 font-weight: 400;
 color: var(--accent-gold);
@@ -649,8 +693,7 @@ width: 100%;
 height: 100%;
 }
 
-/* STREAMING_CHUNK: Styling the luxury translucent glass RSVP card inputs /
-/ 6. RSVP FORM SECTION */
+/* 6. RSVP FORM SECTION */
 .rsvp-section {
 background-color: transparent;
 }
@@ -661,10 +704,11 @@ backdrop-filter: blur(16px);
 -webkit-backdrop-filter: blur(16px);
 max-width: 650px;
 margin: 0 auto;
-padding: 50px 40px;
+padding: clamp(25px, 5vw, 50px) clamp(12px, 4vw, 40px);
 border: 1px solid rgba(250, 249, 246, 0.12);
 position: relative;
 border-radius: 24px;
+width: 100%;
 }
 
 .rsvp-form-card::after {
@@ -712,7 +756,8 @@ background-color: rgba(250, 249, 246, 0.08);
 
 .radio-group {
 display: flex;
-gap: 25px;
+flex-wrap: wrap;
+gap: 10px clamp(15px, 3vw, 25px);
 margin-top: 5px;
 }
 
@@ -729,12 +774,11 @@ color: #FFFFFF;
 accent-color: var(--accent-gold);
 }
 
-/* STREAMING_CHUNK: Engineering reveal trigger animations and standard footer formatting /
-/ SCROLL REVEAL CLASS HOOKS */
+/* SCROLL REVEAL CLASS HOOKS */
 .reveal {
 opacity: 0;
-transform: translateY(40px);
-transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+transform: translateY(30px);
+transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.active {
@@ -745,7 +789,7 @@ transform: translateY(0);
 /* Footer styling */
 footer {
 background-color: rgba(3, 28, 21, 0.9);
-padding: 50px 20px;
+padding: clamp(30px, 6vw, 50px) 20px;
 text-align: center;
 font-size: 0.85rem;
 color: #FAF9F6;
@@ -753,44 +797,19 @@ letter-spacing: 2px;
 border-top: 1px solid rgba(250, 249, 246, 0.05);
 }
 
-/* RESPONSIVE LAYOUT MEDIA QUERIES */
+/* RESPONSIVE MOBILE OVERRIDES TO PRESERVE SIDE-BY-SIDE COLUMNS STYLES (No folding) /
 @media (max-width: 768px) {
+/ Keep small spacing adjustments so columns fit beautifully */
 section {
-padding: 80px 15px;
+padding: clamp(40px, 8vw, 80px) clamp(10px, 2vw, 16px);
 }
-.hero-title {
-font-size: 3rem;
+.card-frame {
+padding: clamp(20px, 5vw, 40px) clamp(10px, 3vw, 20px);
 }
-.hero-title span {
-font-size: 2.2rem;
-}
-.details-grid {
-grid-template-columns: 1fr;
-gap: 30px;
-}
-.entourage-container {
-grid-template-columns: 1fr;
-gap: 20px;
-}
-.entourage-group.full-width {
-grid-column: span 1;
-}
-.sponsors-grid {
-grid-template-columns: 1fr;
-gap: 15px;
-}
-.secondary-grid {
-grid-template-columns: 1fr;
-gap: 15px;
-}
-.countdown-container {
-gap: 10px;
-}
-.countdown-item {
-min-width: 75px;
-padding: 12px 10px;
-}
-.countdown-val {
-font-size: 1.6rem;
-}
+
+/* Force role description tags onto their own block line inside Bearers list */
+.entourage-group .role-desc {
+    display: block;
+    margin-top: 2px;
+    line-height: 1.2;
 }

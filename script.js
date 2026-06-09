@@ -7,11 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     
     let particles = [];
-    const maxParticles = 60;
+    let maxParticles = window.innerWidth < 768 ? 30 : 65; // Performance limit on mobile platforms
 
     const resizeCanvas = () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        maxParticles = window.innerWidth < 768 ? 30 : 65;
     };
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
@@ -24,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
             this.speedY = -(Math.random() * 0.4 + 0.2);
             this.speedX = Math.random() * 0.3 - 0.15;
             this.opacity = Math.random() * 0.5 + 0.3;
-            this.fadeSpeed = Math.random() * 0.005 + 0.002;
         }
 
         update() {
@@ -52,10 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const initParticles = () => {
+        particles = [];
         for (let i = 0; i < maxParticles; i++) {
-            particles.push(new Particle());
-            // Pre-fill canvas height so particles start distributed on-screen
-            particles[i].y = Math.random() * canvas.height;
+            const p = new Particle();
+            p.y = Math.random() * canvas.height; // Distribute on screen initialization
+            particles.push(p);
         }
     };
 
@@ -71,6 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
     initParticles();
     animateParticles();
 
+    // Re-initialize particles on layout orientation change to fit screen widths
+    window.addEventListener('orientationchange', () => {
+        setTimeout(() => {
+            resizeCanvas();
+            initParticles();
+        }, 200);
+    });
+
     // 2. Smooth Scroll Opening
     if (openInviteBtn) {
         openInviteBtn.addEventListener('click', () => {
@@ -84,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Elegant Scroll Reveal Logic
     const revealElements = document.querySelectorAll('.reveal');
     const revealOnScroll = () => {
-        const triggerBottom = window.innerHeight * 0.85;
+        const triggerBottom = window.innerHeight * 0.88;
         revealElements.forEach(el => {
             const elTop = el.getBoundingClientRect().top;
             if (elTop < triggerBottom) {
@@ -96,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     revealOnScroll(); // Run initially to check visible items
 
     // 4. Wedding Live Countdown Engine
-    const weddingDate = new Date('December 12, 2026 15:30:00').getTime();
+    const weddingDate = new Date('December 10, 2026 10:00:00').getTime();
     
     const runCountdown = () => {
         const now = new Date().getTime();
@@ -104,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (distance < 0) {
             clearInterval(countdownInterval);
-            document.querySelector('.countdown-container').innerHTML = "<p style='font-family: var(--font-heading); font-size: 1.5rem; color: var(--accent-gold);'>Today is the Day!</p>";
+            document.querySelector('.countdown-container').innerHTML = "<p style='font-family: var(--font-heading); font-size: 1.5rem; color: var(--accent-gold); text-align: center; width: 100%;'>Today is the Day!</p>";
             return;
         }
 
@@ -122,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const countdownInterval = setInterval(runCountdown, 1000);
     runCountdown(); // First tick
 
-    // 5. Client-side Submission Engine with Elegant Modal Popup (Replacing legacy Alert dialogues)
+    // 5. Client-side Submission Engine with Elegant Responsive Modal Popup (Replacing legacy Alert dialogues)
     if (rsvpForm) {
         rsvpForm.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -134,14 +143,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // Form payload validation (ready for API binding)
             console.log("RSVP Record Created:", { name, attendance, notes });
             
-            // Generate elegant double-bordered custom modal
+            // Generate elegant, fully responsive double-bordered custom modal
             const customModal = document.createElement('div');
             customModal.style.position = 'fixed';
             customModal.style.top = '0';
             customModal.style.left = '0';
             customModal.style.width = '100%';
             customModal.style.height = '100%';
-            customModal.style.backgroundColor = 'rgba(3, 28, 21, 0.7)';
+            customModal.style.backgroundColor = 'rgba(3, 28, 21, 0.85)';
             customModal.style.backdropFilter = 'blur(10px)';
             customModal.style.webkitBackdropFilter = 'blur(10px)';
             customModal.style.display = 'flex';
@@ -150,19 +159,22 @@ document.addEventListener('DOMContentLoaded', () => {
             customModal.style.zIndex = '9999';
             customModal.style.opacity = '0';
             customModal.style.transition = 'opacity 0.4s ease';
+            customModal.style.padding = '20px';
 
             const modalContent = document.createElement('div');
             modalContent.style.backgroundColor = '#092d24';
-            modalContent.style.padding = '50px 40px';
+            modalContent.style.padding = 'clamp(30px, 6vw, 50px) clamp(20px, 4vw, 40px)';
             modalContent.style.textAlign = 'center';
             modalContent.style.maxWidth = '450px';
-            modalContent.style.width = '90%';
-            modalContent.style.boxShadow = '0 15px 40px rgba(0,0,0,0.4)';
+            modalContent.style.width = '100%';
+            modalContent.style.boxShadow = '0 15px 40px rgba(0,0,0,0.5)';
             modalContent.style.border = '1px solid rgba(250, 249, 246, 0.15)';
             modalContent.style.borderRadius = '24px';
             modalContent.style.position = 'relative';
             modalContent.style.transform = 'translateY(20px)';
             modalContent.style.transition = 'transform 0.4s ease';
+            modalContent.style.maxHeight = '90vh';
+            modalContent.style.overflowY = 'auto'; // Prevent content cuts on ultra-small landscape mobile screens
 
             // Fine gold inner lining
             const innerBorder = document.createElement('div');
@@ -180,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const heading = document.createElement('h3');
             heading.innerText = 'Thank You!';
             heading.style.fontFamily = 'Cormorant Garamond, serif';
-            heading.style.fontSize = '2.4rem';
+            heading.style.fontSize = 'clamp(1.8rem, 5vw, 2.4rem)';
             heading.style.fontWeight = '300';
             heading.style.letterSpacing = '2px';
             heading.style.marginBottom = '15px';
@@ -189,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const message = document.createElement('p');
             message.innerText = `Your RSVP response has been successfully sent, ${name}. We look forward to celebrating with you!`;
             message.style.fontFamily = 'Montserrat, sans-serif';
-            message.style.fontSize = '0.95rem';
+            message.style.fontSize = 'clamp(0.85rem, 2vw, 0.95rem)';
             message.style.fontWeight = '300';
             message.style.marginBottom = '30px';
             message.style.lineHeight = '1.6';
