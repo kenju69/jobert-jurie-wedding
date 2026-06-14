@@ -11,12 +11,805 @@
     <meta property="og:image" content="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop">
     <meta property="og:type" content="website">
 
-    <!-- CSS Stylesheet Link -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Premium Google Fonts Integration -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap">
+
+    <!-- CSS Embedded Stylesheet -->
+    <style>
+        :root {
+            /* Color Palette - Emerald Green & Gold Luxury */
+            --bg-primary: #FAF9F6;       /* Warm alabaster cream background */
+            --bg-secondary: #F1F5F2;     /* Soft sage/emerald-cream tint for alternate sections */
+            --text-dark: #142921;        /* Deep forest spruce for high contrast, luxury typography */
+            --text-muted: #526E63;       /* Muted sage for sub-labels */
+            --accent-emerald: #094F3C;   /* Deep Royal Emerald Green */
+            --accent-emerald-hover: #06382B;
+            --accent-gold: #C5A059;      /* Champagne/satin gold for secondary accents */
+            --accent-gold-hover: #A38041;
+
+            /* Typography Scales */
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+
+            /* Global Transitions */
+            --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Smooth Scrolling and Resets */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: radial-gradient(circle at center, #07382a 0%, #031c15 100%);
+            color: #FAF9F6;
+            font-family: var(--font-body);
+            line-height: 1.8;
+            overflow-x: hidden;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+
+        /* Interactive gold particle canvas background container */
+        #sparkleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Subtly moving organic background texture (as observed in image_79f923.png) */
+        .organic-floral-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.08;
+            pointer-events: none;
+            background-image: url('https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=1200&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(100%) contrast(150%);
+        }
+
+        section {
+            padding: clamp(60px, 10vw, 120px) clamp(16px, 4vw, 24px);
+            text-align: center;
+            position: relative;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        /* Elegant card-stock framing accent for editorial style pages */
+        .card-frame {
+            border: 1px solid rgba(250, 249, 246, 0.12);
+            padding: clamp(30px, 6vw, 60px) clamp(15px, 5vw, 40px);
+            background-color: rgba(9, 45, 36, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            width: 100%;
+        }
+
+        .card-frame::before {
+            content: '';
+            position: absolute;
+            top: 6px; left: 6px; right: 6px; bottom: 6px;
+            border: 1px solid var(--accent-gold);
+            pointer-events: none;
+            opacity: 0.35;
+            border-radius: 16px;
+        }
+
+        /* Typography & Minimalist Dividers */
+        h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 300;
+            letter-spacing: clamp(2px, 0.5vw, 4px);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .section-subtitle {
+            font-size: clamp(0.7rem, 2vw, 0.8rem);
+            color: var(--accent-gold);
+            letter-spacing: clamp(2px, 0.4vw, 4px);
+            text-transform: uppercase;
+            margin-bottom: clamp(20px, 4vw, 30px);
+            font-weight: 400;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            width: clamp(40px, 10vw, 80px);
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent-gold), transparent);
+        }
+
+        /* Custom Buttons styling */
+        .btn-primary {
+            background-color: var(--accent-emerald);
+            color: #FFFFFF;
+            border: 1px solid var(--accent-gold);
+            padding: clamp(10px, 2vw, 14px) clamp(24px, 4vw, 35px);
+            font-family: var(--font-body);
+            font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+            border-radius: 30px;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-gold);
+            border-color: #FFFFFF;
+            color: var(--accent-emerald);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+        }
+
+        /* 1. HERO / WELCOME SECTION */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop') center center / cover no-repeat;
+            background-attachment: scroll;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-section {
+                background-attachment: fixed;
+            }
+        }
+
+        .hero-bg-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, rgba(3, 28, 21, 0.45) 0%, rgba(3, 28, 21, 0.8) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: #FFFFFF;
+            padding: clamp(15px, 4vw, 30px);
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .hero-sub {
+            font-size: clamp(0.7rem, 2vw, 0.85rem);
+            letter-spacing: clamp(4px, 1vw, 6px);
+            text-transform: uppercase;
+            margin-bottom: clamp(15px, 4vw, 25px);
+            font-weight: 300;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.4rem, 8vw, 4.5rem);
+            margin-bottom: 20px;
+            font-weight: 300;
+            line-height: 1.15;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .hero-title span {
+            font-family: var(--font-heading);
+            font-style: italic;
+            display: block;
+            font-size: clamp(1.8rem, 6vw, 3rem);
+            margin-top: 5px;
+            color: #FAF9F6;
+        }
+
+        .hero-date {
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            letter-spacing: clamp(3px, 0.8vw, 5px);
+            margin-bottom: clamp(20px, 4vw, 25px);
+            font-weight: 300;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+
+        .hero-hashtag {
+            font-family: var(--font-heading);
+            font-size: clamp(1.1rem, 3vw, 1.6rem);
+            color: rgba(250, 249, 246, 0.95);
+            margin-bottom: clamp(30px, 5vw, 40px);
+            letter-spacing: 1px;
+            font-style: italic;
+            word-wrap: break-word;
+            padding: 0 10px;
+        }
+
+        .btn-open-invite {
+            background-color: transparent;
+            color: #FFFFFF;
+            border: 1px solid var(--accent-gold);
+            padding: clamp(12px, 2vw, 14px) clamp(25px, 5vw, 40px);
+            font-family: var(--font-body);
+            font-size: clamp(0.75rem, 2vw, 0.85rem);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-open-invite::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background-color: var(--accent-emerald);
+            transition: var(--transition-smooth);
+            z-index: -1;
+        }
+
+        .btn-open-invite:hover::before {
+            left: 0;
+        }
+
+        .btn-open-invite:hover {
+            border-color: #FFFFFF;
+        }
+
+        /* COUNTDOWN TIMER CONTAINER */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: clamp(10px, 3vw, 25px);
+            margin-top: 30px;
+        }
+
+        .countdown-item {
+            background-color: rgba(250, 249, 246, 0.05);
+            backdrop-filter: blur(8px);
+            padding: clamp(10px, 2vw, 20px) clamp(12px, 3vw, 25px);
+            border: 1px solid rgba(197, 160, 89, 0.25);
+            min-width: clamp(65px, 15vw, 90px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            border-radius: 12px;
+        }
+
+        .countdown-val {
+            font-family: var(--font-heading);
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            color: var(--accent-gold);
+            display: block;
+            line-height: 1;
+            font-weight: 500;
+        }
+
+        .countdown-lbl {
+            font-size: clamp(0.6rem, 1.5vw, 0.7rem);
+            color: #FAF9F6;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+            margin-top: 5px;
+            opacity: 0.8;
+        }
+
+        /* 2. INVITATION CARD INTRO */
+        .invitation-intro {
+            background-color: transparent;
+        }
+
+        .invitation-intro p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            max-width: 650px;
+            margin: 0 auto;
+            color: #FAF9F6;
+            font-family: var(--font-body);
+            font-weight: 300;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        /* 3. DETAILS / EVENT CARDS - ALWAYS 2 COLUMNS (STAY SIDE-BY-SIDE) */
+        .details-section {
+            background-color: transparent;
+        }
+
+        .event-meta-label {
+            font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            font-weight: 500;
+        }
+
+        .detail-heart-indicator {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            margin-bottom: clamp(20px, 4vw, 40px);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr !important;
+            gap: clamp(10px, 3vw, 40px);
+            margin-top: 20px;
+        }
+
+        .event-card {
+            background-color: rgba(9, 45, 36, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(250, 249, 246, 0.12);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+        }
+
+        .event-card-banner {
+            position: relative;
+            width: 100%;
+            height: clamp(180px, 25vw, 260px);
+            overflow: hidden;
+        }
+
+        .event-card-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 38%;
+        }
+
+        .event-card-banner::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(3, 28, 21, 0.1) 40%, rgba(3, 28, 21, 0.85) 100%);
+            z-index: 1;
+        }
+
+        .banner-overlay-text {
+            position: absolute;
+            bottom: clamp(8px, 1.5vw, 15px);
+            left: clamp(10px, 2vw, 20px);
+            right: clamp(10px, 2vw, 20px);
+            z-index: 2;
+            text-align: left;
+        }
+
+        .banner-overlay-text .badge {
+            background-color: var(--accent-gold);
+            color: #142921;
+            font-size: clamp(0.55rem, 1.2vw, 0.65rem);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .venue-inline-title {
+            font-family: var(--font-heading);
+            font-size: clamp(0.9rem, 2.2vw, 1.4rem);
+            color: #FFFFFF;
+            margin-top: 5px;
+            line-height: 1.2;
+        }
+
+        .event-card-content {
+            padding: clamp(12px, 3vw, 30px);
+            text-align: center;
+        }
+
+        .event-time {
+            font-family: var(--font-heading);
+            font-size: clamp(0.9rem, 2.2vw, 1.3rem);
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: clamp(6px, 1.5vw, 12px);
+            color: var(--accent-gold);
+        }
+
+        .event-address {
+            font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+            color: #FAF9F6;
+            opacity: 0.8;
+            margin-bottom: clamp(15px, 2.5vw, 25px);
+        }
+
+        /* Symmetrical Embedded Map Framing Styles */
+        .map-embed-container {
+            width: 100%;
+            height: clamp(140px, 20vw, 220px);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            margin-top: 15px;
+            background-color: rgba(9, 45, 36, 0.2);
+            position: relative;
+        }
+
+        .map-embed-container iframe {
+            width: 100% !important;
+            height: 100% !important;
+            border: 0;
+            display: block;
+        }
+
+        .event-card-action {
+            padding: 0 clamp(12px, 3vw, 30px) clamp(12px, 3vw, 30px) clamp(12px, 3vw, 30px);
+        }
+
+        /* 4. ENTOURAGE SECTION - ALWAYS 2 COLUMNS (STAY SIDE-BY-SIDE) */
+        .entourage-section {
+            background-color: transparent;
+        }
+
+        .entourage-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr !important;
+            gap: clamp(10px, 3vw, 40px);
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .entourage-group {
+            padding: clamp(5px, 1.5vw, 15px) clamp(2px, 1vw, 20px);
+        }
+
+        .entourage-group.full-width {
+            grid-column: span 2 !important;
+        }
+
+        .entourage-group h3 {
+            font-family: var(--font-heading);
+            font-size: clamp(1rem, 2.5vw, 1.8rem);
+            color: var(--accent-gold);
+            font-weight: 400;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+            padding-bottom: clamp(4px, 1vw, 8px);
+            margin-bottom: clamp(10px, 2vw, 20px);
+            letter-spacing: clamp(1px, 0.2vw, 2px);
+            text-transform: uppercase;
+            line-height: 1.3;
+        }
+
+        .entourage-group .name {
+            font-size: clamp(0.75rem, 1.8vw, 1.05rem);
+            margin: clamp(4px, 1vw, 8px) 0;
+            font-weight: 400;
+            color: #FFFFFF;
+            line-height: 1.4;
+        }
+
+        .entourage-group .role-desc {
+            font-size: clamp(0.6rem, 1.5vw, 0.8rem);
+            color: var(--accent-gold);
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        /* Symmetrical Parents Sub-Layout styles */
+        .parents-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr !important;
+            gap: clamp(10px, 3vw, 40px);
+            margin-top: 10px;
+        }
+
+        .parents-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .parents-column .role-title {
+            font-family: var(--font-heading);
+            font-size: clamp(0.9rem, 2.2vw, 1.3rem);
+            font-weight: 400;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+            padding-bottom: 4px;
+            margin-bottom: 12px;
+            width: 100%;
+            max-width: 250px;
+            text-align: center;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+        }
+
+        /* Side-by-side Ninongs vs Ninangs columns */
+        .sponsors-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr !important;
+            gap: clamp(10px, 2vw, 20px);
+        }
+
+        .sponsors-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Side-by-side 3 Columns (Candle, Veil, Cord) */
+        .secondary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr !important;
+            gap: clamp(5px, 1.5vw, 20px);
+            text-align: center;
+        }
+
+        .role-title {
+            font-weight: 500;
+            font-size: clamp(0.6rem, 1.5vw, 0.8rem);
+            text-transform: uppercase;
+            letter-spacing: clamp(1px, 0.2vw, 2px);
+            color: var(--accent-gold);
+            margin-bottom: 5px;
+        }
+
+        /* 5. GALLERY SECTION */
+        .gallery-section {
+            background-color: transparent;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: clamp(10px, 3vw, 20px);
+            margin-bottom: clamp(30px, 6vw, 60px);
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 4/5;
+            border: 1px solid rgba(250, 249, 246, 0.15);
+            background-color: rgba(9, 45, 36, 0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: var(--transition-smooth);
+            border-radius: 16px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, transparent 70%, rgba(9, 45, 36, 0.3) 100%);
+            transition: var(--transition-smooth);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .video-container-card {
+            background-color: rgba(9, 45, 36, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: clamp(20px, 5vw, 50px) clamp(15px, 4vw, 40px);
+            border: 1px solid rgba(250, 249, 246, 0.12);
+            margin-top: 30px;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border-radius: 24px;
+            width: 100%;
+        }
+
+        .video-container-card::after {
+            content: '';
+            position: absolute;
+            top: 6px; left: 6px; right: 6px; bottom: 6px;
+            border: 1px solid rgba(197, 160, 89, 0.35);
+            pointer-events: none;
+            border-radius: 20px;
+        }
+
+        .video-container-card h3 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            margin-bottom: 25px;
+            font-weight: 400;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            border-radius: 12px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 6. RSVP FORM SECTION */
+        .rsvp-section {
+            background-color: transparent;
+        }
+
+        .rsvp-form-card {
+            background-color: rgba(9, 45, 36, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            max-width: 650px;
+            margin: 0 auto;
+            padding: clamp(25px, 5vw, 50px) clamp(12px, 4vw, 40px);
+            border: 1px solid rgba(250, 249, 246, 0.12);
+            position: relative;
+            border-radius: 24px;
+            width: 100%;
+        }
+
+        .rsvp-form-card::after {
+            content: '';
+            position: absolute;
+            top: 6px; left: 6px; right: 6px; bottom: 6px;
+            border: 1px solid rgba(197, 160, 89, 0.25);
+            pointer-events: none;
+            border-radius: 20px;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: var(--accent-gold);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid rgba(250, 249, 246, 0.15);
+            background-color: rgba(250, 249, 246, 0.05);
+            color: #FFFFFF;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            border-radius: 8px;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 10px rgba(197, 160, 89, 0.2);
+            background-color: rgba(250, 249, 246, 0.08);
+        }
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px clamp(15px, 3vw, 25px);
+            margin-top: 5px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #FFFFFF;
+        }
+
+        .radio-option input {
+            accent-color: var(--accent-gold);
+        }
+
+        /* SCROLL REVEAL CLASS HOOKS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: rgba(3, 28, 21, 0.9);
+            padding: clamp(30px, 6vw, 50px) 20px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #FAF9F6;
+            letter-spacing: 2px;
+            border-top: 1px solid rgba(250, 249, 246, 0.05);
+        }
+
+        /* RESPONSIVE MOBILE OVERRIDES TO PRESERVE SIDE-BY-SIDE COLUMNS STYLES */
+        @media (max-width: 768px) {
+            section {
+                padding: clamp(40px, 8vw, 80px) clamp(10px, 2vw, 16px);
+            }
+            .card-frame {
+                padding: clamp(20px, 5vw, 40px) clamp(10px, 3vw, 20px);
+            }
+
+            /* Force role description tags onto their own block line inside Bearers list */
+            .entourage-group .role-desc {
+                display: block;
+                margin-top: 2px;
+                line-height: 1.2;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Interactive Glowing Gold Particles Canvas -->
+    <!-- Interactive Glowing Gold Particles Canvas Background -->
     <canvas id="sparkleCanvas"></canvas>
 
     <!-- Deep Organic Rose/Floral Backdrop Texture Overlay -->
@@ -73,7 +866,7 @@
             </div>
         </section>
 
-        <!-- 3. DETAILS / EVENT CARD SECTIONS -->
+        <!-- 3. DETAILS / EVENT CARD SECTIONS WITH LIVE INTERACTIVE MAPS -->
         <section class="details-section reveal" id="details">
             <div class="container">
                 <p class="event-meta-label">Ceremony & Reception</p>
@@ -92,20 +885,15 @@
                         </div>
                         <div class="event-card-content">
                             <p class="event-time">Umaga</p>
-                            <p class="event-address">Taal Batangas</p>
+                            <p class="event-address">Calle San Martin, Taal Batangas</p>
                             
-                            <!-- Embedded clean QR ticket element -->
-                            <div class="mini-qr-section">
-                                <div class="qr-box">
-                                    <svg viewBox="0 0 100 100" class="qr-svg">
-                                        <path d="M10 10h30v30H10zm5 5v20h20V15zm50-5h30v30H60zm5 5v20h20V15zM10 60h30v30H10zm5 5v20h20V65zm60-5h10v10H75zm15 15h10v10H90zm-15 10h10v10H75zm15-25h10v10H90zm-15-10h10v10H75zm-15 15h15v15H60zm20 15h10v10H80z" fill="currentColor"/>
-                                    </svg>
-                                </div>
-                                <p class="qr-label">Scan church location</p>
+                            <!-- Live Embedded Google Map for Church -->
+                            <div class="map-embed-container">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3873.306493671085!2d120.9247997!3d13.880612999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd0a246a5a69b9%3A0xde6f612d574bef5b!2sMinor%20Basilica%20and%20Parish%20of%20St.%20Martin%20of%20Tours!5e0!3m2!1sen!2sph!4v1781441842368!5m2!1sen!2sph" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                         </div>
                         <div class="event-card-action">
-                            <a href="https://maps.google.com" target="_blank" class="btn-primary">View Map</a>
+                            <a href="https://maps.app.goo.gl/JUSB9BLRifjNwFpR7" target="_blank" class="btn-primary">View Map</a>
                         </div>
                     </div>
 
@@ -122,17 +910,13 @@
                             <p class="event-time">Tanghali</p>
                             <p class="event-address">Balisong, Taal Batangas</p>
                             
-                            <div class="mini-qr-section">
-                                <div class="qr-box">
-                                    <svg viewBox="0 0 100 100" class="qr-svg">
-                                        <path d="M10 10h30v30H10zm5 5v20h20V15zm50-5h30v30H60zm5 5v20h20V15zM10 60h30v30H10zm5 5v20h20V65zm60-5h10v10H75zm15 15h10v10H90zm-15 10h10v10H75zm15-25h10v10H90zm-15-10h10v10H75zm-15 15h15v15H60zm20 15h10v10H80z" fill="currentColor"/>
-                                    </svg>
-                                </div>
-                                <p class="qr-label">Scan reception location ticket</p>
+                            <!-- Live Embedded Google Map for Reception -->
+                            <div class="map-embed-container">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3873.3166554196523!2d120.9370155!3d13.880004699999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd0bd214a8bba3%3A0x8a7ed18cfa77bfdb!2sGrand%20Terraza!5e0!3m2!1sen!2sph!4v1781441857463!5m2!1sen!2sph" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                         </div>
                         <div class="event-card-action">
-                            <a href="https://maps.google.com" target="_blank" class="btn-primary">View Map</a>
+                            <a href="https://maps.app.goo.gl/HYP4nQJNecmd3ote6" target="_blank" class="btn-primary">View Map</a>
                         </div>
                     </div>
                 </div>
@@ -308,11 +1092,6 @@
                             </div>
                         </div>
 
-                       <!-- <div class="form-group">
-                            <label for="dietaryNotes">Special Notes / Dietary Restrictions</label>
-                            <input type="text" id="dietaryNotes" class="form-control" placeholder="e.g., Allergies, Vegetarian (Optional)">
-                        </div>-->
-
                         <button type="submit" class="btn-primary" style="width: 100%;">Submit Response</button>
                     </form>
                 </div>
@@ -327,7 +1106,256 @@
         <p style="margin-top: 8px; font-size: 0.8rem; color: var(--accent-gold);">#anJohnpalagisiRobertparakayMarjorie</p>
     </footer>
 
-    <!-- JavaScript Link -->
-    <script src="script.js"></script>
+    <!-- JavaScript Execution Logic Block -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const openInviteBtn = document.getElementById('btnOpenInvite');
+            const rsvpForm = document.getElementById('weddingRsvpForm');
+
+            // 1. Interactive Sparkle Particles Engine
+            const canvas = document.getElementById('sparkleCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            let particles = [];
+            let maxParticles = window.innerWidth < 768 ? 30 : 65;
+
+            const resizeCanvas = () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                maxParticles = window.innerWidth < 768 ? 30 : 65;
+            };
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height + canvas.height;
+                    this.size = Math.random() * 2 + 0.5;
+                    this.speedY = -(Math.random() * 0.4 + 0.2);
+                    this.speedX = Math.random() * 0.3 - 0.15;
+                    this.opacity = Math.random() * 0.5 + 0.3;
+                }
+
+                update() {
+                    this.y += this.speedY;
+                    this.x += this.speedX;
+                    
+                    if (this.y < -10) {
+                        this.y = canvas.height + 10;
+                        this.x = Math.random() * canvas.width;
+                    }
+                }
+
+                draw() {
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
+                    ctx.shadowBlur = 8;
+                    ctx.shadowColor = '#C5A059';
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+
+            const initParticles = () => {
+                particles = [];
+                for (let i = 0; i < maxParticles; i++) {
+                    const p = new Particle();
+                    p.y = Math.random() * canvas.height;
+                    particles.push(p);
+                }
+            };
+
+            const animateParticles = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animateParticles);
+            };
+
+            initParticles();
+            animateParticles();
+
+            window.addEventListener('orientationchange', () => {
+                setTimeout(() => {
+                    resizeCanvas();
+                    initParticles();
+                }, 200);
+            });
+
+            // 2. Smooth Scroll Opening
+            if (openInviteBtn) {
+                openInviteBtn.addEventListener('click', () => {
+                    const contentSection = document.getElementById('main-content');
+                    if (contentSection) {
+                        contentSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+
+            // 3. Elegant Scroll Reveal Logic
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                const triggerBottom = window.innerHeight * 0.88;
+                revealElements.forEach(el => {
+                    const elTop = el.getBoundingClientRect().top;
+                    if (elTop < triggerBottom) {
+                        el.classList.add('active');
+                    }
+                });
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+
+            // 4. Wedding Live Countdown Engine
+            const weddingDate = new Date('December 10, 2026 10:00:00').getTime();
+            
+            const runCountdown = () => {
+                const now = new Date().getTime();
+                const distance = weddingDate - now;
+
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    document.querySelector('.countdown-container').innerHTML = "<p style='font-family: var(--font-heading); font-size: 1.5rem; color: var(--accent-gold); text-align: center; width: 100%;'>Today is the Day!</p>";
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = String(days).padStart(2, '0');
+                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('mins').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('secs').innerText = String(seconds).padStart(2, '0');
+            };
+            
+            const countdownInterval = setInterval(runCountdown, 1000);
+            runCountdown();
+
+            // 5. Responsive RSVP Modal Confirmation Popup
+            if (rsvpForm) {
+                rsvpForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    
+                    const name = document.getElementById('guestName').value;
+                    const attendance = document.querySelector('input[name="attendance"]:checked').value;
+
+                    console.log("RSVP Record Created:", { name, attendance });
+                    
+                    const customModal = document.createElement('div');
+                    customModal.style.position = 'fixed';
+                    customModal.style.top = '0';
+                    customModal.style.left = '0';
+                    customModal.style.width = '100%';
+                    customModal.style.height = '100%';
+                    customModal.style.backgroundColor = 'rgba(3, 28, 21, 0.85)';
+                    customModal.style.backdropFilter = 'blur(10px)';
+                    customModal.style.webkitBackdropFilter = 'blur(10px)';
+                    customModal.style.display = 'flex';
+                    customModal.style.justifyContent = 'center';
+                    customModal.style.alignItems = 'center';
+                    customModal.style.zIndex = '9999';
+                    customModal.style.opacity = '0';
+                    customModal.style.transition = 'opacity 0.4s ease';
+                    customModal.style.padding = '20px';
+
+                    const modalContent = document.createElement('div');
+                    modalContent.style.backgroundColor = '#092d24';
+                    modalContent.style.padding = 'clamp(30px, 6vw, 50px) clamp(20px, 4vw, 40px)';
+                    modalContent.style.textAlign = 'center';
+                    modalContent.style.maxWidth = '450px';
+                    modalContent.style.width = '100%';
+                    modalContent.style.boxShadow = '0 15px 40px rgba(0,0,0,0.5)';
+                    modalContent.style.border = '1px solid rgba(250, 249, 246, 0.15)';
+                    modalContent.style.borderRadius = '24px';
+                    modalContent.style.position = 'relative';
+                    modalContent.style.transform = 'translateY(20px)';
+                    modalContent.style.transition = 'transform 0.4s ease';
+                    modalContent.style.maxHeight = '90vh';
+                    modalContent.style.overflowY = 'auto';
+
+                    const innerBorder = document.createElement('div');
+                    innerBorder.style.position = 'absolute';
+                    innerBorder.style.top = '6px';
+                    innerBorder.style.left = '6px';
+                    innerBorder.style.right = '6px';
+                    innerBorder.style.bottom = '6px';
+                    innerBorder.style.border = '1px solid #C5A059';
+                    innerBorder.style.pointerEvents = 'none';
+                    innerBorder.style.opacity = '0.35';
+                    innerBorder.style.borderRadius = '20px';
+                    modalContent.appendChild(innerBorder);
+
+                    const heading = document.createElement('h3');
+                    heading.innerText = 'Thank You!';
+                    heading.style.fontFamily = 'Cormorant Garamond, serif';
+                    heading.style.fontSize = 'clamp(1.8rem, 5vw, 2.4rem)';
+                    heading.style.fontWeight = '300';
+                    heading.style.letterSpacing = '2px';
+                    heading.style.marginBottom = '15px';
+                    heading.style.color = '#C5A059';
+
+                    const message = document.createElement('p');
+                    message.innerText = `Your RSVP response has been successfully sent, ${name}. We look forward to celebrating with you!`;
+                    message.style.fontFamily = 'Montserrat, sans-serif';
+                    message.style.fontSize = 'clamp(0.85rem, 2vw, 0.95rem)';
+                    message.style.fontWeight = '300';
+                    message.style.marginBottom = '30px';
+                    message.style.lineHeight = '1.6';
+                    message.style.color = '#FAF9F6';
+
+                    const closeButton = document.createElement('button');
+                    closeButton.innerText = 'Close';
+                    closeButton.style.backgroundColor = '#094F3C';
+                    closeButton.style.color = '#FFFFFF';
+                    closeButton.style.border = '1px solid #C5A059';
+                    closeButton.style.padding = '12px 35px';
+                    closeButton.style.fontFamily = 'Montserrat, sans-serif';
+                    closeButton.style.textTransform = 'uppercase';
+                    closeButton.style.fontSize = '0.8rem';
+                    closeButton.style.letterSpacing = '2px';
+                    closeButton.style.cursor = 'pointer';
+                    closeButton.style.borderRadius = '30px';
+                    closeButton.style.transition = 'all 0.3s';
+
+                    closeButton.addEventListener('mouseenter', () => {
+                        closeButton.style.backgroundColor = '#C5A059';
+                        closeButton.style.color = '#094F3C';
+                    });
+                    closeButton.addEventListener('mouseleave', () => {
+                        closeButton.style.backgroundColor = '#094F3C';
+                        closeButton.style.color = '#FFFFFF';
+                    });
+
+                    closeButton.addEventListener('click', () => {
+                        customModal.style.opacity = '0';
+                        modalContent.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            document.body.removeChild(customModal);
+                        }, 400);
+                    });
+
+                    modalContent.appendChild(heading);
+                    modalContent.appendChild(message);
+                    modalContent.appendChild(closeButton);
+                    customModal.appendChild(modalContent);
+                    document.body.appendChild(customModal);
+
+                    setTimeout(() => {
+                        customModal.style.opacity = '1';
+                        modalContent.style.transform = 'translateY(0)';
+                    }, 50);
+
+                    rsvpForm.reset();
+                });
+            }
+        });
+    </script>
 </body>
 </html>
