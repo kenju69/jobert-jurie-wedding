@@ -691,7 +691,128 @@
             height: 100%;
         }
 
-        /* 6. RSVP FORM SECTION */
+        /* 6. GUEST GUIDE & COLOR PALETTE SECTION */
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(20px, 4vw, 30px);
+            margin-top: 25px;
+            text-align: left;
+        }
+
+        .guide-card {
+            background-color: rgba(9, 45, 36, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: clamp(25px, 4vw, 35px);
+            border: 1px solid rgba(250, 249, 246, 0.12);
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .guide-card::after {
+            content: '';
+            position: absolute;
+            top: 6px; left: 6px; right: 6px; bottom: 6px;
+            border: 1px solid rgba(197, 160, 89, 0.25);
+            pointer-events: none;
+            border-radius: 16px;
+        }
+
+        .guide-card h3 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            color: var(--accent-gold);
+            margin-bottom: 12px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .guide-card p {
+            font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+            color: #FAF9F6;
+            font-weight: 300;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        /* Color Swatches Grid */
+        .palette-swatches {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .swatch {
+            height: clamp(45px, 8vw, 60px);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .swatch:hover {
+            transform: translateY(-3px) scale(1.05);
+            border-color: var(--accent-gold);
+        }
+
+        /* Attire Illustration Styling */
+        .attire-illustration-container {
+            width: 100%;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: rgba(250, 249, 246, 0.05);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            border-radius: 12px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .attire-illustration-img {
+            max-width: 100%;
+            height: auto;
+            max-height: 220px;
+            object-fit: contain;
+            filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Attire Guide Custom Image Frame */
+        .attire-image-container {
+            width: 100%;
+            margin: 18px 0;
+            padding: 8px;
+            background-color: rgba(250, 249, 246, 0.05);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+        }
+
+        .attire-guide-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+            transition: transform 0.5s ease;
+        }
+
+.attire-guide-img:hover {
+    transform: scale(1.02);
+}
+
+        /* Swatches extracted from Color Palette motif */
+        .swatch-1 { background-color: #0c382b; } /* Deep Emerald */
+        .swatch-2 { background: linear-gradient(135deg, #c9963b, #f1cb77); } /* Dark Satin Gold */
+        .swatch-3 { background: linear-gradient(135deg, #e3b054, #fce09c); } /* Warm Gold */
+        .swatch-4 { background-color: #f5ebe0; } /* Cream / Soft Alabaster */
+        .swatch-5 { background-color: #0b4535; } /* Medium Emerald */
+        .swatch-6 { background-color: #4a5c43; } /* Olive Sage Green */
+        .swatch-7 { background-color: #9d8170; } /* Taupe / Warm Metallic Brown */
+        .swatch-8 { background: linear-gradient(135deg, #d49e38, #eed083); } /* Pure Gold Grain */
+
+        /* 7. RSVP FORM SECTION */
         .rsvp-section {
             background-color: transparent;
         }
@@ -943,8 +1064,8 @@
                         <div class="parents-grid">
                             <div class="parents-column">
                                 <p class="role-title">Of the Groom</p>
-                                <p class="name">Mr. Castillo</p>
-                                <p class="name">Mrs. Castillo</p>
+                                <p class="name">Mr. Dowell J. Castillo</p>
+                                <p class="name">Mrs. Angelita R. Castillo</p>
                             </div>
                             <div class="parents-column">
                                 <p class="role-title">Of the Bride</p>
@@ -959,16 +1080,28 @@
                         <h3>Principal Sponsors</h3>
                         <div class="sponsors-grid">
                             <div class="sponsors-column">
-                                <p class="name">Ninong 1</p>
-                                <p class="name">Ninong 2</p>
-                                <p class="name">Ninong 3</p>
-                                <p class="name">Ninong 4</p>
+                                <p class="name">Ronilo A. Pagsuyoin</p>
+                                <p class="name">Pablo Celito Abracosa</p>
+                                <p class="name">Aries C. Ranches</p>
+                                <p class="name">Nelson B. Boringot</p>
+                                <p class="name">Gerardo J. Castillo</p>
+                                <p class="name">Arnel D. Lopez</p>
+                                <p class="name">Vicente Enrico V. Trimocha</p>
+                                <p class="name">Jharred M. Adajar</p>
+                                <p class="name">Richard H. Bunggo</p>
+                                <p class="name">Rowel P. Bigyan</p>
                             </div>
                             <div class="sponsors-column">
-                                <p class="name">Angelina Acuzar</p>
-                                <p class="name">Madonna Adajar</p>
-                                <p class="name">Ninang 3</p>
-                                <p class="name">Ninang 3</p>
+                                <p class="name">Loida C. Pagsuyoin</p>
+                                <p class="name">Rufina Edna A. Bathan</p>
+                                <p class="name">Niña Preciosa Y. Ilao</p>
+                                <p class="name">Elsa P Boringot</p>
+                                <p class="name">Resy C. Esguerra</p>
+                                <p class="name">Maribel B. Guy-Joco</p>
+                                <p class="name">Carolyn I. Chavez</p>
+                                <p class="name">Maria Madonna M. Adajar</p>
+                                <p class="name">Loreta M. Asugui</p>
+                                <p class="name">Angelina L. Acuzar</p>
                             </div>
                         </div>
                     </div>
@@ -976,27 +1109,27 @@
                     <!-- Bridal Party -->
                     <div class="entourage-group">
                         <h3>Best Man</h3>
-                        <p class="name">Best Man</p>
+                        <p class="name">John Julius R. Castillo</p>
                     </div>
 
                     <div class="entourage-group">
                         <h3>Maid of Honor</h3>
-                        <p class="name">Pauline Grace Balmes</p>
+                        <p class="name">Pauline Grace L. Balmes</p>
                     </div>
 
                     <!-- Groomsmen and Bridesmaids -->
                     <div class="entourage-group">
                         <h3>Groomsmen</h3>
-                        <p class="name">Groomsmen 1</p>
-                        <p class="name">Groomsmen 2</p>
-                        <p class="name">Groomsmen 3</p>
+                        <p class="name">Paul Patrick P. Ranches</p>
+                        <p class="name">Philip James P. Ranches</p>
+                        <!---<p class="name">Groomsmen 3</p>--->
                     </div>
 
                     <div class="entourage-group">
                         <h3>Bridesmaids</h3>
-                        <p class="name">Bridesmaids 1</p>
-                        <p class="name">Bridesmaids 2</p>
-                        <p class="name">Bridesmaids 3</p>
+                        <p class="name">Josephine Pauline R. Castillo</p>
+                        <p class="name">Mary Joy L. Tumbaga</p>
+                        <!---<p class="name">Bridesmaids 3</p>--->
                     </div>
 
                     <!-- Secondary Sponsors -->
@@ -1005,18 +1138,18 @@
                         <div class="secondary-grid">
                             <div>
                                 <p class="role-title">Candle</p>
-                                <p class="name">Mr. Candle</p>
-                                <p class="name">Ms. Candle</p>
+                                <p class="name">Enrico T. Tumbaga</p>
+                                <p class="name">Maria Lourdes C. Palaw</p>
                             </div>
                             <div>
                                 <p class="role-title">Veil</p>
-                                <p class="name">Mr. Veil</p>
-                                <p class="name">Ms. Veil</p>
+                                <p class="name">Pierie Paolo P. Ranches</p>
+                                <p class="name">Donavenuz B. Adame</p>
                             </div>
                             <div>
                                 <p class="role-title">Cord</p>
-                                <p class="name">Mr. Cord</p>
-                                <p class="name">Ms. Cord</p>
+                                <p class="name">John Leonard R. Castillo</p>
+                                <p class="name">Maritoni C. Del Mundo</p>
                             </div>
                         </div>
                     </div>
@@ -1024,16 +1157,16 @@
                     <!-- Attendants -->
                     <div class="entourage-group">
                         <h3>Bearers</h3>
-                        <p class="name"> Zian Jace Tumbaga <span class="role-desc">(Bible Bearer)</span></p>
+                        <p class="name"> Bible <span class="role-desc">(Bible Bearer)</span></p>
                         <p class="name"> Coin <span class="role-desc">(Coin Bearer)</span></p>
-                        <p class="name"> Ring <span class="role-desc">(Ring Bearer)</span></p>
+                        <p class="name">Zian Jace P. Tumbaga <span class="role-desc">(Ring Bearer)</span></p>
                     </div>
 
                     <div class="entourage-group">
                         <h3>Flower Girls</h3>
-                        <p class="name">Flower Girls</p>
-                        <p class="name">Flower Girls</p>
-                        <p class="name">Flower Girls</p>
+                        <p class="name">Nelicia Beatrice E. Santillan</p>
+                        <p class="name">Athena Marie Ramos</p>
+                        <!--<p class="name">Flower Girls</p>-->
                     </div>
 
                 </div>
@@ -1072,57 +1205,103 @@
             </div>
         </section>
 
-        <!-- 6. RSVP FORM SECTION -->
+        <!-- 6. GUEST INFORMATION GUIDE & COLOR PALETTE -->
+        <section class="guide-section reveal" id="guest-guide">
+            <div class="container">
+                <h2>Guest Information</h2>
+                <p class="section-subtitle">Attire Guide & Etiquette</p>
+
+              
+        <!-- Attire Guide & Swatches with Uploaded Custom Image -->
+        <div class="guide-card">
+            <h3>Attire Guide</h3>
+            <p>We would love to see you in your best and most comfortable <strong>Semi-Formal Attire</strong> that suits our wedding motif.</p>
+    
+            <!-- Image Showcase Frame -->
+            <div class="attire-image-container">
+                <img src="guest.png" alt="Wedding Guest Dress Code & Color Palette Guide" class="attire-guide-img">
+            </div>
+
+            <span class="role-title" style="display: block; margin-top: 20px;">Color Palette</span>
+            <div class="palette-swatches">
+            <div class="swatch swatch-1" title="Royal Emerald Green"></div>
+            <div class="swatch swatch-2" title="Dark Gold"></div>
+            <div class="swatch swatch-3" title="Champagne Gold"></div>
+            <div class="swatch swatch-4" title="Warm Alabaster Cream"></div>
+            <div class="swatch swatch-5" title="Deep Spruce"></div>
+            <div class="swatch swatch-6" title="Olive Sage"></div>
+            <div class="swatch swatch-7" title="Warm Taupe"></div>
+            <div class="swatch swatch-8" title="Satin Metallic Gold"></div>
+        </div>
+    </div>
+
+                    <!-- Gift Guide -->
+                    <div class="guide-card">
+                        <h3>Gift Guide</h3>
+                        <p>With all that we have, we've been truly blessed. Your presence and prayers are all that we request. But if you desire to give nonetheless, a monetary gift is what we humbly suggest.</p>
+                    </div>
+
+                    <!-- Privacy Note & Guest Constraints -->
+                    <div class="guide-card">
+                        <h3>Guest Policy & Privacy</h3>
+                        <p>Due to space and seating constraints, we kindly ask for your understanding that only the persons listed in the invitation will be present to ensure a comfortable experience for everyone.</p>
+                        <p style="margin-bottom: 0; font-style: italic; color: var(--accent-gold);">This is an intimate celebration; please refrain from sharing this invitation publicly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. RSVP FORM SECTION -->
         <section class="rsvp-section reveal" id="rsvp">
             <div class="container">
                 <h2>RSVP</h2>
                 <p class="section-subtitle">Kindly Respond by November 12, 2026</p>
                 
                 <div class="rsvp-form-card">
-                <form id="weddingRsvpForm">
-    <div class="form-group">
-        <label for="guestName">Full Name</label>
-        <input type="text" id="guestName" class="form-control" placeholder="Enter your full name" required>
-    </div>
+                    <form id="weddingRsvpForm">
+                        <div class="form-group">
+                            <label for="guestName">Full Name</label>
+                            <input type="text" id="guestName" class="form-control" placeholder="Enter your full name" required>
+                        </div>
 
-    <div class="form-group">
-        <label for="guestEmail">Email Address (Optional)</label>
-        <input type="email" id="guestEmail" class="form-control" placeholder="Enter your email">
-    </div>
+                        <div class="form-group">
+                            <label for="guestEmail">Email Address (Optional)</label>
+                            <input type="email" id="guestEmail" class="form-control" placeholder="Enter your email">
+                        </div>
 
-    <div class="form-group">
-        <label>Will you attend?</label>
-        <div class="radio-group">
-            <label class="radio-option">
-                <input type="radio" name="attendance" value="yes" checked> Joyfully Accepts
-            </label>
-            <label class="radio-option">
-                <input type="radio" name="attendance" value="no"> Regretfully Declines
-            </label>
-        </div>
-    </div>
+                        <div class="form-group">
+                            <label>Will you attend?</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="attendance" value="yes" checked> Joyfully Accepts
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="attendance" value="no"> Regretfully Declines
+                                </label>
+                            </div>
+                        </div>
 
-    <div class="form-group">
-        <label for="companionNames">Companion Name(s)</label>
-        <input type="text" id="companionNames" class="form-control" placeholder="e.g. Name 1, Name 2... (Leave blank if alone)">
-    </div>
+                        <div class="form-group">
+                            <label for="companionNames">Companion Name(s)</label>
+                            <input type="text" id="companionNames" class="form-control" placeholder="e.g. Name 1, Name 2... (Leave blank if alone)">
+                        </div>
 
-    <div class="form-group">
-        <label for="adultKids">Adult / Kids Classification</label>
-        <select id="adultKids" class="form-control" style="background-color: rgba(9, 45, 36, 0.8); color: #FFF;">
-            <option value="Adult">Adult</option>
-            <option value="Kid">Kid</option>
-            <option value="Adult & Kid(s)">Adult & Kid(s)</option>
-        </select>
-    </div>
+                        <div class="form-group">
+                            <label for="adultKids">Adult / Kids Classification</label>
+                            <select id="adultKids" class="form-control" style="background-color: rgba(9, 45, 36, 0.8); color: #FFF;">
+                                <option value="Adult">Adult</option>
+                                <option value="Kid">Kid</option>
+                                <option value="Adult & Kid(s)">Adult & Kid(s)</option>
+                            </select>
+                        </div>
 
-    <div class="form-group">
-        <label for="rsvpNotes">Notes / Special Requests</label>
-        <textarea id="rsvpNotes" class="form-control" rows="3" placeholder="Message for the couple..."></textarea>
-    </div>
+                        <div class="form-group">
+                            <label for="rsvpNotes">Notes / Special Requests</label>
+                            <textarea id="rsvpNotes" class="form-control" rows="3" placeholder="Message for the couple..."></textarea>
+                        </div>
 
-    <button type="submit" id="submitRsvpBtn" class="btn-primary" style="width: 100%;">Submit Response</button>
-</form>
+                        <button type="submit" id="submitRsvpBtn" class="btn-primary" style="width: 100%;">Submit Response</button>
+                    </form>
                 </div>
             </div>
         </section>
@@ -1269,168 +1448,167 @@
             runCountdown();
 
             // 5. Google Sheets-Connected Responsive RSVP Modal Confirmation
-           // 5. Google Sheets-Connected Responsive RSVP Modal Confirmation
-if (rsvpForm) {
-    rsvpForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        
-        const name = document.getElementById('guestName').value;
-        const email = document.getElementById('guestEmail') ? document.getElementById('guestEmail').value : '';
-        const attendance = document.querySelector('input[name="attendance"]:checked').value;
-        const companionNames = document.getElementById('companionNames') ? document.getElementById('companionNames').value : '';
-        const adultKids = document.getElementById('adultKids') ? document.getElementById('adultKids').value : 'Adult';
-        const notes = document.getElementById('rsvpNotes') ? document.getElementById('rsvpNotes').value : '';
+            if (rsvpForm) {
+                rsvpForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    
+                    const name = document.getElementById('guestName').value;
+                    const email = document.getElementById('guestEmail') ? document.getElementById('guestEmail').value : '';
+                    const attendance = document.querySelector('input[name="attendance"]:checked').value;
+                    const companionNames = document.getElementById('companionNames') ? document.getElementById('companionNames').value : '';
+                    const adultKids = document.getElementById('adultKids') ? document.getElementById('adultKids').value : 'Adult';
+                    const notes = document.getElementById('rsvpNotes') ? document.getElementById('rsvpNotes').value : '';
 
-        // Update UI to show submitting state
-        submitRsvpBtn.disabled = true;
-        submitRsvpBtn.innerText = "Sending Response...";
+                    // Update UI to show submitting state
+                    submitRsvpBtn.disabled = true;
+                    submitRsvpBtn.innerText = "Sending Response...";
 
-        const scriptUrl = 'https://script.google.com/macros/s/AKfycbz1NacJtWNPg01m8tqd4dHxuPsjt_r-iOLUTc_r88UkoEEjPFSpX9g5fE0lzqp7qro/exec';
+                    const scriptUrl = 'https://script.google.com/macros/s/AKfycbz1NacJtWNPg01m8tqd4dHxuPsjt_r-iOLUTc_r88UkoEEjPFSpX9g5fE0lzqp7qro/exec';
 
-        const payload = {
-            guestName: name,
-            email: email,
-            attendance: attendance,
-            companionNames: companionNames,
-            adultKids: adultKids,
-            notes: notes
-        };
+                    const payload = {
+                        guestName: name,
+                        email: email,
+                        attendance: attendance,
+                        companionNames: companionNames,
+                        adultKids: adultKids,
+                        notes: notes
+                    };
 
-        fetch(scriptUrl, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(payload)
-        })
-        .then(() => {
-            showSuccessModal(name, attendance);
-        })
-        .catch((err) => {
-            console.error('Submission Error:', err);
-            showSuccessModal(name, attendance);
-        })
-        .finally(() => {
-            submitRsvpBtn.disabled = false;
-            submitRsvpBtn.innerText = "Submit Response";
-            rsvpForm.reset();
-        });
-    });
-}
+                    fetch(scriptUrl, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(payload)
+                    })
+                    .then(() => {
+                        showSuccessModal(name, attendance);
+                    })
+                    .catch((err) => {
+                        console.error('Submission Error:', err);
+                        showSuccessModal(name, attendance);
+                    })
+                    .finally(() => {
+                        submitRsvpBtn.disabled = false;
+                        submitRsvpBtn.innerText = "Submit Response";
+                        rsvpForm.reset();
+                    });
+                });
+            }
 
-function showSuccessModal(name, attendance) {
-    const customModal = document.createElement('div');
-    customModal.style.position = 'fixed';
-    customModal.style.top = '0';
-    customModal.style.left = '0';
-    customModal.style.width = '100%';
-    customModal.style.height = '100%';
-    customModal.style.backgroundColor = 'rgba(3, 28, 21, 0.85)';
-    customModal.style.backdropFilter = 'blur(10px)';
-    customModal.style.webkitBackdropFilter = 'blur(10px)';
-    customModal.style.display = 'flex';
-    customModal.style.justifyContent = 'center';
-    customModal.style.alignItems = 'center';
-    customModal.style.zIndex = '9999';
-    customModal.style.opacity = '0';
-    customModal.style.transition = 'opacity 0.4s ease';
-    customModal.style.padding = '20px';
+            function showSuccessModal(name, attendance) {
+                const customModal = document.createElement('div');
+                customModal.style.position = 'fixed';
+                customModal.style.top = '0';
+                customModal.style.left = '0';
+                customModal.style.width = '100%';
+                customModal.style.height = '100%';
+                customModal.style.backgroundColor = 'rgba(3, 28, 21, 0.85)';
+                customModal.style.backdropFilter = 'blur(10px)';
+                customModal.style.webkitBackdropFilter = 'blur(10px)';
+                customModal.style.display = 'flex';
+                customModal.style.justifyContent = 'center';
+                customModal.style.alignItems = 'center';
+                customModal.style.zIndex = '9999';
+                customModal.style.opacity = '0';
+                customModal.style.transition = 'opacity 0.4s ease';
+                customModal.style.padding = '20px';
 
-    const modalContent = document.createElement('div');
-    modalContent.style.backgroundColor = '#092d24';
-    modalContent.style.padding = 'clamp(30px, 6vw, 50px) clamp(20px, 4vw, 40px)';
-    modalContent.style.textAlign = 'center';
-    modalContent.style.maxWidth = '450px';
-    modalContent.style.width = '100%';
-    modalContent.style.boxShadow = '0 15px 40px rgba(0,0,0,0.5)';
-    modalContent.style.border = '1px solid rgba(250, 249, 246, 0.15)';
-    modalContent.style.borderRadius = '24px';
-    modalContent.style.position = 'relative';
-    modalContent.style.transform = 'translateY(20px)';
-    modalContent.style.transition = 'transform 0.4s ease';
-    modalContent.style.maxHeight = '90vh';
-    modalContent.style.overflowY = 'auto';
+                const modalContent = document.createElement('div');
+                modalContent.style.backgroundColor = '#092d24';
+                modalContent.style.padding = 'clamp(30px, 6vw, 50px) clamp(20px, 4vw, 40px)';
+                modalContent.style.textAlign = 'center';
+                modalContent.style.maxWidth = '450px';
+                modalContent.style.width = '100%';
+                modalContent.style.boxShadow = '0 15px 40px rgba(0,0,0,0.5)';
+                modalContent.style.border = '1px solid rgba(250, 249, 246, 0.15)';
+                modalContent.style.borderRadius = '24px';
+                modalContent.style.position = 'relative';
+                modalContent.style.transform = 'translateY(20px)';
+                modalContent.style.transition = 'transform 0.4s ease';
+                modalContent.style.maxHeight = '90vh';
+                modalContent.style.overflowY = 'auto';
 
-    const innerBorder = document.createElement('div');
-    innerBorder.style.position = 'absolute';
-    innerBorder.style.top = '6px';
-    innerBorder.style.left = '6px';
-    innerBorder.style.right = '6px';
-    innerBorder.style.bottom = '6px';
-    innerBorder.style.border = '1px solid #C5A059';
-    innerBorder.style.pointerEvents = 'none';
-    innerBorder.style.opacity = '0.35';
-    innerBorder.style.borderRadius = '20px';
-    modalContent.appendChild(innerBorder);
+                const innerBorder = document.createElement('div');
+                innerBorder.style.position = 'absolute';
+                innerBorder.style.top = '6px';
+                innerBorder.style.left = '6px';
+                innerBorder.style.right = '6px';
+                innerBorder.style.bottom = '6px';
+                innerBorder.style.border = '1px solid #C5A059';
+                innerBorder.style.pointerEvents = 'none';
+                innerBorder.style.opacity = '0.35';
+                innerBorder.style.borderRadius = '20px';
+                modalContent.appendChild(innerBorder);
 
-    const heading = document.createElement('h3');
-    heading.style.fontFamily = 'Cormorant Garamond, serif';
-    heading.style.fontSize = 'clamp(1.8rem, 5vw, 2.4rem)';
-    heading.style.fontWeight = '300';
-    heading.style.letterSpacing = '2px';
-    heading.style.marginBottom = '15px';
-    heading.style.color = '#C5A059';
+                const heading = document.createElement('h3');
+                heading.style.fontFamily = 'Cormorant Garamond, serif';
+                heading.style.fontSize = 'clamp(1.8rem, 5vw, 2.4rem)';
+                heading.style.fontWeight = '300';
+                heading.style.letterSpacing = '2px';
+                heading.style.marginBottom = '15px';
+                heading.style.color = '#C5A059';
 
-    const message = document.createElement('p');
-    message.style.fontFamily = 'Montserrat, sans-serif';
-    message.style.fontSize = 'clamp(0.85rem, 2vw, 0.95rem)';
-    message.style.fontWeight = '300';
-    message.style.marginBottom = '30px';
-    message.style.lineHeight = '1.6';
-    message.style.color = '#FAF9F6';
+                const message = document.createElement('p');
+                message.style.fontFamily = 'Montserrat, sans-serif';
+                message.style.fontSize = 'clamp(0.85rem, 2vw, 0.95rem)';
+                message.style.fontWeight = '300';
+                message.style.marginBottom = '30px';
+                message.style.lineHeight = '1.6';
+                message.style.color = '#FAF9F6';
 
-    // Dynamic Title & Message depending on Attendance choice
-    if (attendance === 'yes') {
-        heading.innerText = 'Thank You!';
-        message.innerText = `Your RSVP response has been successfully sent, ${name}. We look forward to celebrating with you!`;
-    } else {
-        heading.innerText = 'Thank You for Letting Us Know';
-        message.innerText = `We are sorry you won't be able to join us, ${name}, but we truly appreciate you taking the time to send your response. You will be missed!`;
-    }
+                // Dynamic Title & Message depending on Attendance choice
+                if (attendance === 'yes') {
+                    heading.innerText = 'Thank You!';
+                    message.innerText = `Your RSVP response has been successfully sent, ${name}. We look forward to celebrating with you!`;
+                } else {
+                    heading.innerText = 'Thank You for Letting Us Know';
+                    message.innerText = `We are sorry you won't be able to join us, ${name}, but we truly appreciate you taking the time to send your response. You will be missed!`;
+                }
 
-    const closeButton = document.createElement('button');
-    closeButton.innerText = 'Close';
-    closeButton.style.backgroundColor = '#094F3C';
-    closeButton.style.color = '#FFFFFF';
-    closeButton.style.border = '1px solid #C5A059';
-    closeButton.style.padding = '12px 35px';
-    closeButton.style.fontFamily = 'Montserrat, sans-serif';
-    closeButton.style.textTransform = 'uppercase';
-    closeButton.style.fontSize = '0.8rem';
-    closeButton.style.letterSpacing = '2px';
-    closeButton.style.cursor = 'pointer';
-    closeButton.style.borderRadius = '30px';
-    closeButton.style.transition = 'all 0.3s';
+                const closeButton = document.createElement('button');
+                closeButton.innerText = 'Close';
+                closeButton.style.backgroundColor = '#094F3C';
+                closeButton.style.color = '#FFFFFF';
+                closeButton.style.border = '1px solid #C5A059';
+                closeButton.style.padding = '12px 35px';
+                closeButton.style.fontFamily = 'Montserrat, sans-serif';
+                closeButton.style.textTransform = 'uppercase';
+                closeButton.style.fontSize = '0.8rem';
+                closeButton.style.letterSpacing = '2px';
+                closeButton.style.cursor = 'pointer';
+                closeButton.style.borderRadius = '30px';
+                closeButton.style.transition = 'all 0.3s';
 
-    closeButton.addEventListener('mouseenter', () => {
-        closeButton.style.backgroundColor = '#C5A059';
-        closeButton.style.color = '#094F3C';
-    });
-    closeButton.addEventListener('mouseleave', () => {
-        closeButton.style.backgroundColor = '#094F3C';
-        closeButton.style.color = '#FFFFFF';
-    });
+                closeButton.addEventListener('mouseenter', () => {
+                    closeButton.style.backgroundColor = '#C5A059';
+                    closeButton.style.color = '#094F3C';
+                });
+                closeButton.addEventListener('mouseleave', () => {
+                    closeButton.style.backgroundColor = '#094F3C';
+                    closeButton.style.color = '#FFFFFF';
+                });
 
-    closeButton.addEventListener('click', () => {
-        customModal.style.opacity = '0';
-        modalContent.style.transform = 'translateY(20px)';
-        setTimeout(() => {
-            document.body.removeChild(customModal);
-        }, 400);
-    });
+                closeButton.addEventListener('click', () => {
+                    customModal.style.opacity = '0';
+                    modalContent.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        document.body.removeChild(customModal);
+                    }, 400);
+                });
 
-    modalContent.appendChild(heading);
-    modalContent.appendChild(message);
-    modalContent.appendChild(closeButton);
-    customModal.appendChild(modalContent);
-    document.body.appendChild(customModal);
+                modalContent.appendChild(heading);
+                modalContent.appendChild(message);
+                modalContent.appendChild(closeButton);
+                customModal.appendChild(modalContent);
+                document.body.appendChild(customModal);
 
-    setTimeout(() => {
-        customModal.style.opacity = '1';
-        modalContent.style.transform = 'translateY(0)';
-    }, 50);
-}
+                setTimeout(() => {
+                    customModal.style.opacity = '1';
+                    modalContent.style.transform = 'translateY(0)';
+                }, 50);
+            }
         });
     </script>
 </body>
